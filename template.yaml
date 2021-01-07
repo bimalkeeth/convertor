@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  convertor
+  Lambda Template for convertor
+
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+ ConvertorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: convertor-lambda
+      Description: Lambda for csvconversion and analysing
+      CodeUri: convertor_lambda/
+      Handler: app.lambda_handler
+      Runtime: python3.8
+      Role: 'arn:aws:iam::353211458622:role/lambadfullaccess'
+      Environment:
+        Variables:
+           FAILED_FOLDER: failed-tasks
+           OUTPUT_FOLDER: done-tasks
+           TODO_FOLDER: todo-tasks
+           CUSTOMER_01: customer1
+           CUSTOMER_02: customer2
+
+
+
